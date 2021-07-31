@@ -30,6 +30,14 @@ public class GeneratoreQuery {
 	static public String queryStringRicercaPerProvinciaConGravità(String provincia,String gravità) {
 		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.*,inc.* FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.Provincia='"+provincia+"' AND inc.Gravità='"+gravità+"'";
 	}
+	public static String queryStringRicercaPerRegione(String regione) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static String queryStringRicercaPerRegioneConGravità(String regione, String gravità) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 /*query di prova
  * RicercaPerDistanza

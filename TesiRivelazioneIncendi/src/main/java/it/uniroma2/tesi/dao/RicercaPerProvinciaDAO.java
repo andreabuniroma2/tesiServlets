@@ -6,7 +6,7 @@ import org.json.JSONException;
 
 public interface RicercaPerProvinciaDAO {
 	public String getListaIncendiProvincia(HttpServletRequest request);
-	public String ricercaIncendi(String comune) throws JSONException;
-	public String ricercaIncendiConGravita(String comune, String gravità) throws JSONException;
+	public String ricercaIncendi(String provincia) throws JSONException;
+	public String ricercaIncendiConGravita(String provincia, String gravità) throws JSONException;
 
 }

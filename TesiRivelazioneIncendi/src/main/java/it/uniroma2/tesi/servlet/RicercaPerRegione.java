@@ -6,12 +6,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.uniroma2.tesi.dao.RicercaPerRegioneDAO;
+import it.uniroma2.tesi.daoImplementation.RicercaPerRegioneDAOImp;
+
 /**
  * Servlet implementation class RicercaPerRegione
  */
 public class RicercaPerRegione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private String urlDB;
+	private String usDB;
+	private String pwDB;
+	 public void init() throws ServletException {
+			urlDB = getServletContext().getInitParameter("urlDatabaseLocale");
+			usDB = getServletContext().getInitParameter("userLocale");
+			pwDB = getServletContext().getInitParameter("passwdLocale");
+		}
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -25,7 +35,8 @@ public class RicercaPerRegione extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RicercaPerRegioneDAO ricercaIncendiPerComune=new RicercaPerRegioneDAOImp(urlDB, usDB, pwDB);
+		response.getWriter().append(ricercaIncendiPerComune.getListaIncendiRegione(request));
 	}
 
 	/**
