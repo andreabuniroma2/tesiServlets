@@ -27,9 +27,9 @@ public class RicercaPerComune extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     public void init() throws ServletException {
-		urlDB = getServletContext().getInitParameter("urlDatabase");
-		usDB = getServletContext().getInitParameter("usernameDB");
-		pwDB = getServletContext().getInitParameter("passwdDB");
+		urlDB = getServletContext().getInitParameter("urlDatabaseLocale");
+		usDB = getServletContext().getInitParameter("userLocale");
+		pwDB = getServletContext().getInitParameter("passwdLocale");
 	}
 
 

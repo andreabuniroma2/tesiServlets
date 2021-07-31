@@ -11,7 +11,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RicercaPerProvincia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private String urlDB;
+	private String usDB;
+	private String pwDB;
+	 public void init() throws ServletException {
+			urlDB = getServletContext().getInitParameter("urlDatabaseLocale");
+			usDB = getServletContext().getInitParameter("userLocale");
+			pwDB = getServletContext().getInitParameter("passwdLocale");
+		}
+
     /**
      * @see HttpServlet#HttpServlet()
      */

@@ -77,7 +77,7 @@ public class RicercaPerComuneDAOImp implements RicercaPerComuneDAO {
 		String comune = request.getParameter("comune");
 		if (request.getParameterMap().containsKey("gravity"))
 			try {
-				String gravita = request.getParameter("gravita").trim();
+				String gravita = request.getParameter("gravity").trim();
 				ret = ricercaIncendiConGravita(comune, gravita);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

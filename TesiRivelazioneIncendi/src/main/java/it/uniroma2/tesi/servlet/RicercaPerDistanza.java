@@ -31,11 +31,12 @@ public class RicercaPerDistanza extends HttpServlet {
 
 	}
 
-	  public void init() throws ServletException {
-		urlDB = getServletContext().getInitParameter("urlDatabase");
-		usDB = getServletContext().getInitParameter("usernameDB");
-		pwDB = getServletContext().getInitParameter("passwdDB");
-	}
+	 public void init() throws ServletException {
+			urlDB = getServletContext().getInitParameter("urlDatabaseLocale");
+			usDB = getServletContext().getInitParameter("userLocale");
+			pwDB = getServletContext().getInitParameter("passwdLocale");
+		}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse

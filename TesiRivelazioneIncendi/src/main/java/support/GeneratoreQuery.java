@@ -23,8 +23,16 @@ public class GeneratoreQuery {
 	static public String queryStringRicercaPerDistanzaWithGravity(String latitudine, String longitudine, String distanza, String gravit) {
 		return "";
 	}
+	static public String queryStringRicercaPerProvincia(String provincia) {
+		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.*,inc.* FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.Provincia='"+provincia+"'";
+		
+	}
+	static public String queryStringRicercaPerProvinciaConGravità(String provincia,String gravità) {
+		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.*,inc.* FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.Provincia='"+provincia+"' AND inc.Gravità='"+gravità+"'";
+	}
 }
 /*query di prova
+ * RicercaPerDistanza
 SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.*,inc.* , ( 6371 * acos( cos( radians(41.70543535951623) ) * cos( radians(X(pi.Coordinate) ) ) * 
                         cos( radians( Y(pi.Coordinate) ) - radians(12.708195109878806) )+ 
                         sin( radians(41.70543535951623) ) * sin( radians( X(pi.Coordinate) ) ) ) ) AS distance FROM partiincendio pi, incendio inc WHERE   inc.IDincendio=pi.IncendioIDincendio having distance < 0.8 
