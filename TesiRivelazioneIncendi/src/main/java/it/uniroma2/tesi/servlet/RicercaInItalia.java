@@ -25,7 +25,7 @@ public class RicercaInItalia extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
 	 public void init() throws ServletException {
-			urlDB = getServletContext().getInitParameter("urlDatabaseItaliaLocale");
+			urlDB = getServletContext().getInitParameter("urlDatabaseLocale");
 			usDB = getServletContext().getInitParameter("userLocale");
 			pwDB = getServletContext().getInitParameter("passwdLocale");
 		}

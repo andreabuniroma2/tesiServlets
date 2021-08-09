@@ -11,7 +11,7 @@ public class GeneratoreQuery {
 		return "SELECT inc.IDincendio as IDincendio, X(inc.Coordinate) "
 				+ "as LatitudineCoordinateCentrali , Y(inc.Coordinate) as LongitudineCoordinateCentrali , inc.Gravità, X(pi.Coordinate) as Latitudine, "
 				+ " Y(pi.Coordinate) as Longitudine FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.comune='"+comune+"' AND"
-						+ "inc.Gravità='"+gravità+"'";
+						+ " inc.Gravità='"+gravità+"'";
 
 	}
 	static public String queryStringRicercaPerDistanza(String latitudine, String longitudine, String distanza) {
@@ -21,7 +21,9 @@ public class GeneratoreQuery {
 
 	}
 	static public String queryStringRicercaPerDistanzaWithGravity(String latitudine, String longitudine, String distanza, String gravit) {
-		return "";
+		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.*,inc.* , ( 6371 * acos( cos( radians("+latitudine+") ) * cos( radians(X(pi.Coordinate) ) ) * "
+				+ " cos( radians( Y(pi.Coordinate) ) - radians("+longitudine+") ) + "
+				+ " sin( radians("+latitudine+") ) * sin( radians( X(pi.Coordinate) ) ) ) ) AS distance FROM partiincendio pi, incendio inc WHERE   inc.IDincendio=pi.IncendioIDincendio having distance < "+ distanza+" AND inc.Gravità='"+gravit+"'";
 	}
 	static public String queryStringRicercaPerProvincia(String provincia) {
 		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.*,inc.* FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.Provincia="+provincia+"";
