@@ -67,6 +67,7 @@
 		<servlet-name>RicercaPerDistanza</servlet-name>
 		<url-pattern>/RicercaPerDistanza</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>RicercaPerRegione</servlet-name>
 		<servlet-class>it.uniroma2.tesi.servlet.RicercaPerRegione</servlet-class>
@@ -117,10 +118,6 @@
 	<servlet>
 		<servlet-name>ProvaJDBC</servlet-name>
 		<servlet-class>it.uniroma2.tesi.servlet.ProvaJDBC</servlet-class>
-		<init-param>
-			<param-name>nome_parametro_servlet</param-name>
-			<param-value>valore</param-value>
-		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProvaJDBC</servlet-name>
