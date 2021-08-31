@@ -60,6 +60,22 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<servlet>
+		<servlet-name>ContatoreRisorse</servlet-name>
+		<servlet-class>it.uniroma2.tesi.servlet.ContatoreRisorse</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ContatoreRisorse</servlet-name>
+		<url-pattern>/ContatoreRisorse</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SingoloIncendio</servlet-name>
+		<servlet-class>it.uniroma2.tesi.servlet.SingoloIncendio</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SingoloIncendio</servlet-name>
+		<url-pattern>/SingoloIncendio</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>RicercaPerDistanza</servlet-name>
 		<servlet-class>it.uniroma2.tesi.servlet.RicercaPerDistanza</servlet-class>
 	</servlet>
@@ -112,6 +128,7 @@
 		<servlet-name>RicercaInItalia</servlet-name>
 		<url-pattern>/RicercaInItalia</url-pattern>
 	</servlet-mapping>
+	
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>

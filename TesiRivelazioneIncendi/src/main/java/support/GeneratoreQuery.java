@@ -63,8 +63,11 @@ public class GeneratoreQuery {
 
 	public static String queryStringRicercaPerIDIncendio(String idIncendio) {
 		// TODO Auto-generated method stub
-		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.DataOra,inc.Gravità as gravita, inc.IDincendio FROM incendio inc, partiincendio pi WHERE inc.IDincendio='"
+		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.DataOra,inc.Gravità as gravita, inc.IDincendio FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.IDincendio='"
 				+ idIncendio + "'";
+	}
+	public static String queryStringRicercaNumeroRisorse(String idIncendio) {
+		return "SELECT  COUNT(viginc.VigileDelFuocoCodiceFiscale) AS 'Numero Vigili', COUNT(incsc.ScaleIDScale) AS 'Numero Scale', COUNT(incvs.VeicoloDiSoccorsoIDVeicolo) as 'Numero Veicoli', COUNT(inck.KitIdraulicoIDKitIdraulico) as 'Numero Kit Idraulici', COUNT(incal.AltreaAttrezzatureIDattrezzatura) as 'Altro' FROM incendio as ince LEFT JOIN vigiledelfuoco_incendio as viginc ON ince.IDincendio = viginc.IncendioIDincendio LEFT JOIN incendio_scale as incsc ON ince.IDincendio = incsc.IncendioIDincendio LEFT JOIN incendio_veicolodisoccorso as incvs ON ince.IDincendio = incvs.IncendioIDincendio LEFT JOIN incendio_kitidraulico as inck ON ince.IDincendio = inck.IncendioIDincendio LEFT JOIN incendio_altreaattrezzature as incal ON ince.IDincendio = incal.IncendioIDincendio WHERE ince.IDincendio="+idIncendio+" GROUP BY ince.IDincendio";
 	}
 }
 /*
@@ -77,4 +80,17 @@ public class GeneratoreQuery {
  * radians( X(pi.Coordinate) ) ) ) ) AS distance FROM partiincendio pi, incendio
  * inc WHERE inc.IDincendio=pi.IncendioIDincendio having distance < 0.8
  * 
+SELECT  COUNT(viginc.VigileDelFuocoCodiceFiscale) AS "Numero Vigili",
+COUNT(incsc.ScaleIDScale) AS "Numero Scale",
+COUNT(incvs.VeicoloDiSoccorsoIDVeicolo) as "Numero Veicoli",
+COUNT(inck.KitIdraulicoIDKitIdraulico) as "Numero Kit Idraulici",
+COUNT(incal.AltreaAttrezzatureIDattrezzatura) as "Altro"
+FROM incendio as ince 
+  LEFT JOIN vigiledelfuoco_incendio as viginc ON ince.IDincendio = viginc.IncendioIDincendio
+  LEFT JOIN incendio_scale as incsc ON ince.IDincendio = incsc.IncendioIDincendio
+  LEFT JOIN incendio_veicolodisoccorso as incvs ON ince.IDincendio = incvs.IncendioIDincendio
+  LEFT JOIN incendio_kitidraulico as inck ON ince.IDincendio = inck.IncendioIDincendio
+  LEFT JOIN incendio_altreaattrezzature as incal ON ince.IDincendio = incal.IncendioIDincendio
+  WHERE ince.IDincendio=6276
+GROUP BY ince.IDincendio;
  */

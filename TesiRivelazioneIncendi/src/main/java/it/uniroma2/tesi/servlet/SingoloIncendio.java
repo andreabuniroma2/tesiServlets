@@ -15,7 +15,6 @@ import it.uniroma2.tesi.daoImplementation.SingoloIncendioDAOImp;
 /**
  * Servlet implementation class SingoloIncendio
  */
-@WebServlet("/SingoloIncendio")
 public class SingoloIncendio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String urlDB;

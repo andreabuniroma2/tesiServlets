@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONArray;
@@ -18,7 +17,6 @@ import support.GeneratoreQuery;
 
 public class RicercaPerComuneDAOImp implements RicercaPerComuneDAO {
 	private Connection conn;
-	ServletContext sc;
 
 	public RicercaPerComuneDAOImp(String urlDatabase, String userdb, String passwdb) {
 		// TODO Auto-generated constructor stub
