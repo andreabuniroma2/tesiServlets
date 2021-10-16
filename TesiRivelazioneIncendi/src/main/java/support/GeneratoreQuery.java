@@ -3,16 +3,16 @@ package support;
 public class GeneratoreQuery {
 	static public String queryStringRicercaComune(String comune) {
 		return "SELECT inc.IDincendio as IDincendio, X(inc.Coordinate) "
-				+ "as LatitudineCoordinateCentrali , Y(inc.Coordinate) as LongitudineCoordinateCentrali , inc.Gravità as gravita, X(pi.Coordinate) as Latitudine, "
-				+ " Y(pi.Coordinate) as Longitudine FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.comune='"
+				+ "as LatitudineCoordinateCentrali , Y(inc.Coordinate) as LongitudineCoordinateCentrali , inc.Gravità as gravita, inc.DataInizio, X(pi.Coordinate) as Latitudine, "
+				+ " Y(pi.Coordinate) as Longitudine, pi.DataOra FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.comune='"
 				+ comune + "'";
 
 	}
 
 	static public String queryStringRicercaComuneConGravità(String comune, String gravità) {
 		return "SELECT inc.IDincendio as IDincendio, X(inc.Coordinate) "
-				+ "as LatitudineCoordinateCentrali , Y(inc.Coordinate) as LongitudineCoordinateCentrali , inc.Gravità as gravita, X(pi.Coordinate) as Latitudine, "
-				+ " Y(pi.Coordinate) as Longitudine FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.comune='"
+				+ "as LatitudineCoordinateCentrali , Y(inc.Coordinate) as LongitudineCoordinateCentrali , inc.Gravità as gravita, inc.DataInizio, X(pi.Coordinate) as Latitudine, "
+				+ " Y(pi.Coordinate) as Longitudine, pi.DataOra FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.comune='"
 				+ comune + "' AND" + " inc.Gravità='" + gravità + "'";
 
 	}
@@ -56,14 +56,18 @@ public class GeneratoreQuery {
 
 	public static String queryStringRicercaPerRegioneConGravità(String regione, String gravità) {
 		// TODO Auto-generated method stub
-		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.DataOra,inc.Gravità as gravita, inc.IDincendio FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.Regione="
+		return "SELECT inc.IDincendio as IDincendio, X(inc.Coordinate) "
+				+ "as LatitudineCoordinateCentrali , Y(inc.Coordinate) as LongitudineCoordinateCentrali , inc.Gravità as gravita, inc.DataInizio, X(pi.Coordinate) as Latitudine, "
+				+ " Y(pi.Coordinate) as Longitudine, pi.DataOra FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.Regione="
 				+ regione + " AND inc.Gravità='" + gravità + "'";
 
 	}
 
 	public static String queryStringRicercaPerIDIncendio(String idIncendio) {
 		// TODO Auto-generated method stub
-		return "SELECT X(inc.Coordinate) as latitudinecentrale, Y(inc.Coordinate) as longitudinecentrale, X(pi.Coordinate) as latitudine,Y(pi.Coordinate) as longitudine, pi.DataOra,inc.Gravità as gravita, inc.IDincendio FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.IDincendio='"
+		return "SELECT inc.IDincendio as IDincendio, X(inc.Coordinate) "
+				+ "as LatitudineCoordinateCentrali , Y(inc.Coordinate) as LongitudineCoordinateCentrali , inc.Gravità as gravita, inc.DataInizio, X(pi.Coordinate) as Latitudine, "
+				+ " Y(pi.Coordinate) as Longitudine, pi.DataOra FROM incendio inc, partiincendio pi WHERE inc.IDincendio=pi.IncendioIDincendio AND inc.IDincendio='"
 				+ idIncendio + "'";
 	}
 	public static String queryStringRicercaNumeroRisorse(String idIncendio) {

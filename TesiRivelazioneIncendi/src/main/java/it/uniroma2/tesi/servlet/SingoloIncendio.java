@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 import it.uniroma2.tesi.dao.SingoloIncendioDAO;
 import it.uniroma2.tesi.daoImplementation.SingoloIncendioDAOImp;
+import support.PrintClass;
 
 /**
  * Servlet implementation class SingoloIncendio
@@ -43,7 +44,7 @@ public class SingoloIncendio extends HttpServlet {
 		if (request.getParameterMap().containsKey("idincendio"))
 			try {
 				SingoloIncendioDAO ricercaIncendo = new SingoloIncendioDAOImp(urlDB, usDB, pwDB);
-				response.getWriter().append(ricercaIncendo.getIncendio(request.getParameter("idincendio")));
+				response.getWriter().append(PrintClass.retrurnStatementToJSONArray( ricercaIncendo.getIncendio(request.getParameter("idincendio"))).toString());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -5,14 +5,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import it.uniroma2.tesi.dao.SingoloIncendioDAO;
-import support.CreateJSONS;
+import it.uniroma2.tesi.entity.Incendio;
+import support.CreateListIncendi;
 import support.GeneratoreQuery;
 
 public class SingoloIncendioDAOImp implements SingoloIncendioDAO {
@@ -31,22 +32,21 @@ public class SingoloIncendioDAOImp implements SingoloIncendioDAO {
 	}
 
 	@Override
-	public String getIncendio(String idIncendio) throws JSONException {
+	public ArrayList<Incendio> getIncendio(String idIncendio) throws JSONException {
 		// TODO Auto-generated method stub
-		JSONArray jArray = new JSONArray();
+		ArrayList<Incendio> incendi= new ArrayList<Incendio>();
 		String sql = GeneratoreQuery.queryStringRicercaPerIDIncendio(idIncendio);
-		System.out.println(sql);
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
 			ResultSet rset = stmt.executeQuery(sql);
-			jArray=CreateJSONS.retrurnStatementToJSONArray(rset);
+			incendi=CreateListIncendi.retrurnStatementToIncendiList(rset);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
-		return jArray.toString();
+		return incendi;
 	}
 
 }

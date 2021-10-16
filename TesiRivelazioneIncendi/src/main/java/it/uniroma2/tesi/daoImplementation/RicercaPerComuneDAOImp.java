@@ -5,15 +5,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import it.uniroma2.tesi.dao.RicercaPerComuneDAO;
-import support.CreateJSONS;
+import it.uniroma2.tesi.entity.Incendio;
+import support.CreateListIncendi;
 import support.GeneratoreQuery;
+import support.PrintClass;
 
 public class RicercaPerComuneDAOImp implements RicercaPerComuneDAO {
 	private Connection conn;
@@ -30,42 +32,40 @@ public class RicercaPerComuneDAOImp implements RicercaPerComuneDAO {
 	}
 
 	@Override
-	public String ricercaIncendi(String comune) throws JSONException {
+	public ArrayList<Incendio> ricercaIncendi(String comune) throws JSONException {
 		// TODO Auto-generated method stub
-		JSONArray jArray = new JSONArray();
+		ArrayList<Incendio> incendi=new ArrayList<Incendio>();
 		String sql = GeneratoreQuery.queryStringRicercaComune(comune);
-		System.out.println(sql);
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
 			ResultSet rset = stmt.executeQuery(sql);
-			jArray=CreateJSONS.retrurnStatementToJSONArray(rset);
+			incendi=CreateListIncendi.retrurnStatementToIncendiList(rset);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
-		return jArray.toString();
+		return incendi;
 
 	}
 
 	@Override
-	public String ricercaIncendiConGravita(String comune, String gravità) throws JSONException {
+	public ArrayList<Incendio> ricercaIncendiConGravita(String comune, String gravità) throws JSONException {
 		// TODO Auto-generated method stub
-		JSONArray jArray = new JSONArray();
+		ArrayList<Incendio> incendi=new ArrayList<Incendio>();
 		String sql = GeneratoreQuery.queryStringRicercaComuneConGravità(comune,gravità);
-		System.out.println(sql);
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
 			ResultSet rset = stmt.executeQuery(sql);
-			jArray=CreateJSONS.retrurnStatementToJSONArray(rset);
+			incendi=CreateListIncendi.retrurnStatementToIncendiList(rset);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
-		return jArray.toString();
+		return incendi;
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class RicercaPerComuneDAOImp implements RicercaPerComuneDAO {
 		if (request.getParameterMap().containsKey("gravity"))
 			try {
 				String gravita = request.getParameter("gravity").trim();
-				ret = ricercaIncendiConGravita(comune, gravita);
+				ret =PrintClass.retrurnStatementToJSONArray(ricercaIncendiConGravita(comune, gravita)).toString();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -84,8 +84,7 @@ public class RicercaPerComuneDAOImp implements RicercaPerComuneDAO {
 		else
 			try {
 
-				System.out.println("prima della ricerca siamo nel gestisci richiesta");
-				ret = ricercaIncendi(comune);
+				ret = PrintClass.retrurnStatementToJSONArray(ricercaIncendi(comune)).toString();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
