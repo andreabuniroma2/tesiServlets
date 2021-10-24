@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.uniroma2.tesi.dao.RicercaPerComuneDAO;
-import it.uniroma2.tesi.daoImplementation.RicercaPerComuneDAOImp;
+import it.uniroma2.tesi.daoImplementation.RicercaPerComuneImp;
 
 /**
  * Servlet implementation class RicercaPerComune
@@ -38,7 +37,7 @@ public class RicercaPerComune extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RicercaPerComuneDAO ricercaIncendiPerComune=new RicercaPerComuneDAOImp(urlDB, usDB, pwDB);
+		RicercaPerComuneImp ricercaIncendiPerComune=new RicercaPerComuneImp(urlDB, usDB, pwDB);
 		response.getWriter().append(ricercaIncendiPerComune.getListaIncendiComune(request));
 	}
 

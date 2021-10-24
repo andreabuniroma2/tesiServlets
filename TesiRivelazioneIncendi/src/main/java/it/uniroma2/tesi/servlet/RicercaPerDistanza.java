@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 
-import it.uniroma2.tesi.dao.RicercaPerDistanzaDAO;
-import it.uniroma2.tesi.daoImplementation.RicercaPerDistanzaDAOImp;
+import it.uniroma2.tesi.daoImplementation.RicercaPerDistanzaImp;
 
 /**
  * Servlet implementation class Incendi
@@ -45,7 +44,7 @@ public class RicercaPerDistanza extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RicercaPerDistanzaDAO incendi = new RicercaPerDistanzaDAOImp(urlDB, usDB, pwDB);
+		RicercaPerDistanzaImp incendi = new RicercaPerDistanzaImp(urlDB, usDB, pwDB);
 		String jarray;
 		try {
 			jarray = incendi.getIncendi(request);
